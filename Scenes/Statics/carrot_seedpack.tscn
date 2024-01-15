@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://gr3mfxklph3q"]
+
+[ext_resource type="Script" path="res://Scripts/carrot_seedpack.gd" id="1_dsmqr"]
+[ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/farmingTilesheetComplete.png" id="2_i85df"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm7ml"]
+atlas = ExtResource("2_i85df")
+region = Rect2(192, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_23vs4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pm7ml")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iwkck"]
+radius = 5.09902
+
+[node name="carrot_seedpack" type="StaticBody2D"]
+script = ExtResource("1_dsmqr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_23vs4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_iwkck")
