@@ -1,4 +1,5 @@
 extends  Node2D
+class_name seed_pack
 
 var seed_type: int = 1 # 1 => Carrot 
 var dragable: bool = false
