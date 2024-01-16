@@ -12,3 +12,7 @@ func _process(_delta):
 	$Counts/Cabbages/CabbageText.text = str(GameManager.cabbageCount)
 	$Counts/Strawberries/StrawberryText.text = str(GameManager.strawberryCount)
 	$Counts/Coins/CoinsText.text = str(GameManager.Coins)
+
+
+func _on_audio_stream_player_2d_finished():
+		$AudioStreamPlayer2D.play()
