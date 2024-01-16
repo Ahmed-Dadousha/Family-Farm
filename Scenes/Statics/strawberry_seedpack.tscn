@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://vh6ygasb5djl"]
 
 [ext_resource type="Script" path="res://Scripts/strawberry_seedpack.gd" id="1_hheaq"]
-[ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/farmingTilesheetComplete.png" id="1_w0ca1"]
+[ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/art/farmingTilesheetComplete.png" id="1_w0ca1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_napi0"]
 atlas = ExtResource("1_w0ca1")
