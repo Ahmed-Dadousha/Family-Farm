@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvkjjbgenibev"]
+
+[ext_resource type="Script" path="res://Scripts/cabbage_seedpack.gd" id="1_tge36"]
+[ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/farmingTilesheetComplete.png" id="2_1n4ao"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnyd3"]
+atlas = ExtResource("2_1n4ao")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7tjvk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnyd3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pkk3w"]
+radius = 6.0
+
+[node name="cabbage_seedpack" type="Node2D"]
+script = ExtResource("1_tge36")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7tjvk")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_pkk3w")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

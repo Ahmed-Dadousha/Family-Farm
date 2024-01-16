@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://x8i60cq3wmdr"]
+[gd_scene load_steps=22 format=3 uid="uid://x8i60cq3wmdr"]
 
 [ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/farmingTilesheetComplete.png" id="1_3hh6q"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_064u5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bms87kalqwjfi" path="res://Scenes/Statics/growning_zone.tscn" id="4_ryis1"]
 [ext_resource type="PackedScene" uid="uid://ccex52g5e4oey" path="res://Scenes/Characters/player.tscn" id="6_csa86"]
 [ext_resource type="PackedScene" uid="uid://dhns1ns4iwdae" path="res://Scenes/Statics/corn_seedpack.tscn" id="6_dge3g"]
+[ext_resource type="PackedScene" uid="uid://bvkjjbgenibev" path="res://Scenes/Statics/cabbage_seedpack.tscn" id="7_8rc78"]
 [ext_resource type="PackedScene" uid="uid://d2imb1amihj2w" path="res://Scenes/Statics/sell_zone.tscn" id="7_frcfd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yn5ci"]
@@ -238,6 +239,21 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_aune1"]
+atlas = ExtResource("1_3hh6q")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nqib0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aune1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_064u5")
 
@@ -308,6 +324,9 @@ position = Vector2(202, 76)
 [node name="corn_seedpack" parent="seedPacks" instance=ExtResource("6_dge3g")]
 position = Vector2(225, 56)
 
+[node name="cabbage_seedpack" parent="seedPacks" instance=ExtResource("7_8rc78")]
+position = Vector2(225, 76)
+
 [node name="Counts" type="Node2D" parent="."]
 position = Vector2(375, 220)
 
@@ -359,7 +378,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Corns" type="Node2D" parent="Counts"]
-position = Vector2(0, 25)
+position = Vector2(41, -19)
 
 [node name="CornIcon" type="AnimatedSprite2D" parent="Counts/Corns"]
 position = Vector2(-1, 4.5)
@@ -374,6 +393,24 @@ offset_bottom = 15.0
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Cabbages" type="Node2D" parent="Counts"]
+position = Vector2(42, 4)
+
+[node name="CabbageIcon" type="AnimatedSprite2D" parent="Counts/Cabbages"]
+position = Vector2(-1, 4.5)
+sprite_frames = SubResource("SpriteFrames_nqib0")
+
+[node name="CabbageText" type="Label" parent="Counts/Cabbages"]
+offset_left = 16.0
+offset_top = -8.0
+offset_right = 26.0
+offset_bottom = 15.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="sell_zone" parent="." instance=ExtResource("7_frcfd")]
 position = Vector2(233, 115)

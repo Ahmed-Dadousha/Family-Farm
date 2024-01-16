@@ -4,6 +4,9 @@ var plant: int = GameManager.planedSelected
 var is_growing: bool = false
 var grown: bool = false
 
+func _ready():
+	$plant.play("none")
+
 func _physics_process(_delta):
 	if !is_growing:
 		plant = GameManager.planedSelected
@@ -22,7 +25,10 @@ func _on_area_2d_area_entered(_area):
 			is_growing = true
 			$corn_grow_timer.start()
 			$plant.play("corn_growing")
-			
+		elif plant == 4:
+			is_growing = true
+			$cabbage_grow_timer.start()
+			$plant.play("cabbage_growing")
 	else:
 		print("Plant is already grown here!")
 		
@@ -49,17 +55,25 @@ func _on_corn_grow_timer_timeout():
 	elif $plant.frame == 1:
 		$plant.frame = 2
 		grown = true
+
+func _on_cabbage_grow_timer_timeout():
+	if $plant.frame == 0:
+		$plant.frame = 1
+		$cabbage_grow_timer.start()
+	elif $plant.frame == 1:
+		$plant.frame = 2
+		grown = true
 		
 func _on_area_2d_input_event(_viewport, _event, _shape_idx):
 	if Input.is_action_just_pressed("click"):
 		if grown:
 			if plant == 1:
-				GameManager.carrotsCount += 1
+				GameManager.carrotCount += 1
 				is_growing = false
 				grown = false
 				$plant.play("none")
 			elif plant == 2:
-				GameManager.onionsCount += 1
+				GameManager.onionCount += 1
 				is_growing = false
 				grown = false
 				$plant.play("none")
@@ -68,5 +82,8 @@ func _on_area_2d_input_event(_viewport, _event, _shape_idx):
 				is_growing = false
 				grown = false
 				$plant.play("none")
-
-
+			elif plant == 4:
+				GameManager.cabbageCount += 1
+				is_growing = false
+				grown = false
+				$plant.play("none")
