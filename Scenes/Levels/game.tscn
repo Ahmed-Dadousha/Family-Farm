@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://x8i60cq3wmdr"]
+[gd_scene load_steps=19 format=3 uid="uid://x8i60cq3wmdr"]
 
 [ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/farmingTilesheetComplete.png" id="1_3hh6q"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_064u5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xjqhl5nx23dd" path="res://Scenes/Statics/onion_seedpack.tscn" id="3_ajads"]
 [ext_resource type="PackedScene" uid="uid://bms87kalqwjfi" path="res://Scenes/Statics/growning_zone.tscn" id="4_ryis1"]
 [ext_resource type="PackedScene" uid="uid://ccex52g5e4oey" path="res://Scenes/Characters/player.tscn" id="6_csa86"]
+[ext_resource type="PackedScene" uid="uid://dhns1ns4iwdae" path="res://Scenes/Statics/corn_seedpack.tscn" id="6_dge3g"]
 [ext_resource type="PackedScene" uid="uid://d2imb1amihj2w" path="res://Scenes/Statics/sell_zone.tscn" id="7_frcfd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yn5ci"]
@@ -222,6 +223,21 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xn6yq"]
+atlas = ExtResource("1_3hh6q")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bdqa2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xn6yq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_064u5")
 
@@ -281,11 +297,16 @@ position = Vector2(83, 56)
 [node name="growning_zone15" parent="Growing_Zones" instance=ExtResource("4_ryis1")]
 position = Vector2(83, 74)
 
-[node name="carrot_seedpack" parent="." instance=ExtResource("2_lgyi7")]
+[node name="seedPacks" type="Node2D" parent="."]
+
+[node name="carrot_seedpack" parent="seedPacks" instance=ExtResource("2_lgyi7")]
 position = Vector2(202, 56)
 
-[node name="onion_seedpack" parent="." instance=ExtResource("3_ajads")]
+[node name="onion_seedpack" parent="seedPacks" instance=ExtResource("3_ajads")]
 position = Vector2(202, 76)
+
+[node name="corn_seedpack" parent="seedPacks" instance=ExtResource("6_dge3g")]
+position = Vector2(225, 56)
 
 [node name="Counts" type="Node2D" parent="."]
 position = Vector2(375, 220)
@@ -304,7 +325,7 @@ offset_bottom = 11.0
 text = "0"
 
 [node name="Carrots" type="Node2D" parent="Counts"]
-position = Vector2(0, -16)
+position = Vector2(0, -19)
 
 [node name="CarrotIcon" type="AnimatedSprite2D" parent="Counts/Carrots"]
 position = Vector2(2, 3.5)
@@ -321,7 +342,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Onions" type="Node2D" parent="Counts"]
-position = Vector2(0, 12)
+position = Vector2(0, 3)
 
 [node name="OnionIcon" type="AnimatedSprite2D" parent="Counts/Onions"]
 position = Vector2(0, 3.5)
@@ -329,6 +350,23 @@ scale = Vector2(1, 1.4375)
 sprite_frames = SubResource("SpriteFrames_mfkd2")
 
 [node name="OnionText" type="Label" parent="Counts/Onions"]
+offset_left = 17.0
+offset_top = -8.0
+offset_right = 27.0
+offset_bottom = 15.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Corns" type="Node2D" parent="Counts"]
+position = Vector2(0, 25)
+
+[node name="CornIcon" type="AnimatedSprite2D" parent="Counts/Corns"]
+position = Vector2(-1, 4.5)
+scale = Vector2(1, 1.4375)
+sprite_frames = SubResource("SpriteFrames_bdqa2")
+
+[node name="CornText" type="Label" parent="Counts/Corns"]
 offset_left = 17.0
 offset_top = -8.0
 offset_right = 27.0
