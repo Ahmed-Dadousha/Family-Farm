@@ -5,3 +5,4 @@ extends Node2D
 func _process(_delta):
 	$Counts/Carrots/CarrotText.text = str(GameManager.carrotsCount)
 	$Counts/Onions/OnionText.text = str(GameManager.OnionsCount)
+	$Counts/Coins/CoinsText.text = str(GameManager.Coins)

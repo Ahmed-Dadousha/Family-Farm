@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://x8i60cq3wmdr"]
+[gd_scene load_steps=16 format=3 uid="uid://x8i60cq3wmdr"]
 
 [ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/farmingTilesheetComplete.png" id="1_3hh6q"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_064u5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xjqhl5nx23dd" path="res://Scenes/Statics/onion_seedpack.tscn" id="3_ajads"]
 [ext_resource type="PackedScene" uid="uid://bms87kalqwjfi" path="res://Scenes/Statics/growning_zone.tscn" id="4_ryis1"]
 [ext_resource type="PackedScene" uid="uid://ccex52g5e4oey" path="res://Scenes/Characters/player.tscn" id="6_csa86"]
+[ext_resource type="PackedScene" uid="uid://d2imb1amihj2w" path="res://Scenes/Statics/sell_zone.tscn" id="7_frcfd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yn5ci"]
 texture = ExtResource("1_3hh6q")
@@ -176,6 +177,21 @@ texture = ExtResource("1_3hh6q")
 [sub_resource type="TileSet" id="TileSet_o4eq8"]
 sources/0 = SubResource("TileSetAtlasSource_yn5ci")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxu73"]
+atlas = ExtResource("1_3hh6q")
+region = Rect2(64, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_doly6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxu73")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3iplv"]
 atlas = ExtResource("1_3hh6q")
 region = Rect2(128, 32, 16, 16)
@@ -274,8 +290,21 @@ position = Vector2(202, 76)
 [node name="Counts" type="Node2D" parent="."]
 position = Vector2(375, 220)
 
+[node name="Coins" type="Node2D" parent="Counts"]
+position = Vector2(0, -37)
+
+[node name="CoinsIcons" type="AnimatedSprite2D" parent="Counts/Coins"]
+sprite_frames = SubResource("SpriteFrames_doly6")
+
+[node name="CoinsText" type="Label" parent="Counts/Coins"]
+offset_left = 17.0
+offset_top = -12.0
+offset_right = 27.0
+offset_bottom = 11.0
+text = "0"
+
 [node name="Carrots" type="Node2D" parent="Counts"]
-position = Vector2(0, -30)
+position = Vector2(0, -16)
 
 [node name="CarrotIcon" type="AnimatedSprite2D" parent="Counts/Carrots"]
 position = Vector2(2, 3.5)
@@ -292,6 +321,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Onions" type="Node2D" parent="Counts"]
+position = Vector2(0, 12)
 
 [node name="OnionIcon" type="AnimatedSprite2D" parent="Counts/Onions"]
 position = Vector2(0, 3.5)
@@ -306,6 +336,9 @@ offset_bottom = 15.0
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="sell_zone" parent="." instance=ExtResource("7_frcfd")]
+position = Vector2(233, 115)
 
 [node name="player" parent="." instance=ExtResource("6_csa86")]
 position = Vector2(278, 64)
