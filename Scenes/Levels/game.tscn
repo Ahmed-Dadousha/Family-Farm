@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://x8i60cq3wmdr"]
+[gd_scene load_steps=25 format=3 uid="uid://x8i60cq3wmdr"]
 
 [ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/farmingTilesheetComplete.png" id="1_3hh6q"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_064u5"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dhns1ns4iwdae" path="res://Scenes/Statics/corn_seedpack.tscn" id="6_dge3g"]
 [ext_resource type="PackedScene" uid="uid://bvkjjbgenibev" path="res://Scenes/Statics/cabbage_seedpack.tscn" id="7_8rc78"]
 [ext_resource type="PackedScene" uid="uid://d2imb1amihj2w" path="res://Scenes/Statics/sell_zone.tscn" id="7_frcfd"]
+[ext_resource type="PackedScene" uid="uid://vh6ygasb5djl" path="res://Scenes/Statics/strawberry_seedpack.tscn" id="8_x6yb1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yn5ci"]
 texture = ExtResource("1_3hh6q")
@@ -254,6 +255,21 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkpav"]
+atlas = ExtResource("1_3hh6q")
+region = Rect2(160, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1gxns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkpav")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_064u5")
 
@@ -316,16 +332,19 @@ position = Vector2(83, 74)
 [node name="seedPacks" type="Node2D" parent="."]
 
 [node name="carrot_seedpack" parent="seedPacks" instance=ExtResource("2_lgyi7")]
-position = Vector2(202, 56)
+position = Vector2(200, 53)
 
 [node name="onion_seedpack" parent="seedPacks" instance=ExtResource("3_ajads")]
-position = Vector2(202, 76)
+position = Vector2(200, 79)
 
 [node name="corn_seedpack" parent="seedPacks" instance=ExtResource("6_dge3g")]
-position = Vector2(225, 56)
+position = Vector2(227, 53)
 
 [node name="cabbage_seedpack" parent="seedPacks" instance=ExtResource("7_8rc78")]
-position = Vector2(225, 76)
+position = Vector2(227, 79)
+
+[node name="strawberry_seedpack" parent="seedPacks" instance=ExtResource("8_x6yb1")]
+position = Vector2(213, 66)
 
 [node name="Counts" type="Node2D" parent="."]
 position = Vector2(375, 220)
@@ -403,6 +422,23 @@ position = Vector2(-1, 4.5)
 sprite_frames = SubResource("SpriteFrames_nqib0")
 
 [node name="CabbageText" type="Label" parent="Counts/Cabbages"]
+offset_left = 16.0
+offset_top = -8.0
+offset_right = 26.0
+offset_bottom = 15.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Strawberries" type="Node2D" parent="Counts"]
+position = Vector2(42, -40)
+
+[node name="StrawberryIcon" type="AnimatedSprite2D" parent="Counts/Strawberries"]
+position = Vector2(-1, 4.5)
+sprite_frames = SubResource("SpriteFrames_1gxns")
+
+[node name="StrawberryText" type="Label" parent="Counts/Strawberries"]
 offset_left = 16.0
 offset_top = -8.0
 offset_right = 26.0

@@ -7,10 +7,11 @@ func _on_body_entered(body):
 		var onions: int = GameManager.onionCount
 		var corns: int = GameManager.cornCount
 		var cabbages: int = GameManager.cabbageCount
+		var strawberries: int = GameManager.strawberryCount
 		
 		var coins: int = GameManager.Coins
 
-		coins += (carrots * 5) + (onions * 8) + (corns * 11) + (cabbages * 14)
+		coins += (carrots * 5) + (onions * 8) + (corns * 11) + (cabbages * 14) + (strawberries * 2)
 		
 		GameManager.Coins = coins
 		
@@ -18,3 +19,4 @@ func _on_body_entered(body):
 		GameManager.onionCount = 0
 		GameManager.cornCount = 0
 		GameManager.cabbageCount = 0
+		GameManager.strawberryCount = 0

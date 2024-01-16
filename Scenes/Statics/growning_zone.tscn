@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bms87kalqwjfi"]
+[gd_scene load_steps=23 format=3 uid="uid://bms87kalqwjfi"]
 
 [ext_resource type="Script" path="res://Scripts/growning_zone.gd" id="1_6hcqg"]
 [ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/farmingTilesheetComplete.png" id="1_cuuym"]
@@ -73,6 +73,18 @@ region = Rect2(112, 48, 16, 16)
 atlas = ExtResource("1_cuuym")
 region = Rect2(96, 48, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qcra"]
+atlas = ExtResource("1_cuuym")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de3up"]
+atlas = ExtResource("1_cuuym")
+region = Rect2(192, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15a0q"]
+atlas = ExtResource("1_cuuym")
+region = Rect2(176, 48, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7adm5"]
 animations = [{
 "frames": [{
@@ -138,6 +150,20 @@ animations = [{
 "loop": false,
 "name": &"onion_growing",
 "speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qcra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de3up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15a0q")
+}],
+"loop": false,
+"name": &"strawberry_growing",
+"speed": 0.0
 }]
 
 [node name="growning_zone" type="Node2D"]
@@ -152,9 +178,9 @@ sprite_frames = SubResource("SpriteFrames_lbf54")
 shape = SubResource("RectangleShape2D_utkgj")
 
 [node name="plant" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_7adm5")
-animation = &"none"
+animation = &"strawberry_growing"
 
 [node name="carrot_grow_timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -168,9 +194,15 @@ wait_time = 5.0
 [node name="cabbage_grow_timer" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="strawberry_grow_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Timers" type="Node" parent="."]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="timeout" from="carrot_grow_timer" to="." method="_on_carrot_grow_timer_timeout"]
 [connection signal="timeout" from="onion_grow_timer" to="." method="_on_onion_grow_timer_timeout"]
 [connection signal="timeout" from="corn_grow_timer" to="." method="_on_corn_grow_timer_timeout"]
 [connection signal="timeout" from="cabbage_grow_timer" to="." method="_on_cabbage_grow_timer_timeout"]
+[connection signal="timeout" from="strawberry_grow_timer" to="." method="_on_strawberry_grow_timer_timeout"]

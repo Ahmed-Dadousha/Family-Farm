@@ -8,6 +8,7 @@ var carrotCount: int = 0
 var onionCount: int = 0
 var cornCount: int = 0
 var cabbageCount: int = 0
+var strawberryCount: int = 0
 
 var Coins: int = 0
 var is_dragging: bool = false

@@ -29,6 +29,10 @@ func _on_area_2d_area_entered(_area):
 			is_growing = true
 			$cabbage_grow_timer.start()
 			$plant.play("cabbage_growing")
+		elif plant == 5:
+			is_growing = true
+			$strawberry_grow_timer.start()
+			$plant.play("strawberry_growing")
 	else:
 		print("Plant is already grown here!")
 		
@@ -63,6 +67,14 @@ func _on_cabbage_grow_timer_timeout():
 	elif $plant.frame == 1:
 		$plant.frame = 2
 		grown = true
+
+func _on_strawberry_grow_timer_timeout():
+	if $plant.frame == 0:
+		$plant.frame = 1
+		$strawberry_grow_timer.start()
+	elif $plant.frame == 1:
+		$plant.frame = 2
+		grown = true
 		
 func _on_area_2d_input_event(_viewport, _event, _shape_idx):
 	if Input.is_action_just_pressed("click"):
@@ -84,6 +96,11 @@ func _on_area_2d_input_event(_viewport, _event, _shape_idx):
 				$plant.play("none")
 			elif plant == 4:
 				GameManager.cabbageCount += 1
+				is_growing = false
+				grown = false
+				$plant.play("none")
+			elif plant == 5:
+				GameManager.strawberryCount += 1
 				is_growing = false
 				grown = false
 				$plant.play("none")
