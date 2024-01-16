@@ -178,7 +178,7 @@ sprite_frames = SubResource("SpriteFrames_lbf54")
 shape = SubResource("RectangleShape2D_utkgj")
 
 [node name="plant" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(1, -3)
 sprite_frames = SubResource("SpriteFrames_7adm5")
 animation = &"strawberry_growing"
 

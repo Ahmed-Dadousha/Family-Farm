@@ -453,3 +453,5 @@ position = Vector2(233, 115)
 
 [node name="player" parent="." instance=ExtResource("6_csa86")]
 position = Vector2(278, 64)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

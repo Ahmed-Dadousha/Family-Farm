@@ -14,93 +14,62 @@ func _physics_process(_delta):
 func _on_area_2d_area_entered(_area):
 	if !is_growing:
 		if plant == 1:
-			is_growing = true
 			$carrot_grow_timer.start()
 			$plant.play("carrot_growing")
 		elif plant == 2:
-			is_growing = true
 			$onion_grow_timer.start()
 			$plant.play("onion_growing")
 		elif plant == 3:
-			is_growing = true
 			$corn_grow_timer.start()
 			$plant.play("corn_growing")
 		elif plant == 4:
-			is_growing = true
 			$cabbage_grow_timer.start()
 			$plant.play("cabbage_growing")
 		elif plant == 5:
-			is_growing = true
 			$strawberry_grow_timer.start()
 			$plant.play("strawberry_growing")
+			
+		is_growing = true
 	else:
 		print("Plant is already grown here!")
 		
 func _on_carrot_grow_timer_timeout():
-	if $plant.frame == 0:
-		$plant.frame = 1
-		$carrot_grow_timer.start()
-	elif $plant.frame == 1:
-		$plant.frame = 2
-		grown = true
+	change_frame($carrot_grow_timer)
 		
 func _on_onion_grow_timer_timeout():
-	if $plant.frame == 0:
-		$plant.frame = 1
-		$onion_grow_timer.start()
-	elif $plant.frame == 1:
-		$plant.frame = 2
-		grown = true
+	change_frame($onion_grow_timer)
 		
 func _on_corn_grow_timer_timeout():
-	if $plant.frame == 0:
-		$plant.frame = 1
-		$corn_grow_timer.start()
-	elif $plant.frame == 1:
-		$plant.frame = 2
-		grown = true
+	change_frame($corn_grow_timer)
 
 func _on_cabbage_grow_timer_timeout():
-	if $plant.frame == 0:
-		$plant.frame = 1
-		$cabbage_grow_timer.start()
-	elif $plant.frame == 1:
-		$plant.frame = 2
-		grown = true
+	change_frame($cabbage_grow_timer)
 
 func _on_strawberry_grow_timer_timeout():
-	if $plant.frame == 0:
-		$plant.frame = 1
-		$strawberry_grow_timer.start()
-	elif $plant.frame == 1:
-		$plant.frame = 2
-		grown = true
+	change_frame($strawberry_grow_timer)
 		
 func _on_area_2d_input_event(_viewport, _event, _shape_idx):
 	if Input.is_action_just_pressed("click"):
 		if grown:
 			if plant == 1:
 				GameManager.carrotCount += 1
-				is_growing = false
-				grown = false
-				$plant.play("none")
 			elif plant == 2:
 				GameManager.onionCount += 1
-				is_growing = false
-				grown = false
-				$plant.play("none")
 			elif plant == 3:
 				GameManager.cornCount += 1
-				is_growing = false
-				grown = false
-				$plant.play("none")
 			elif plant == 4:
 				GameManager.cabbageCount += 1
-				is_growing = false
-				grown = false
-				$plant.play("none")
 			elif plant == 5:
 				GameManager.strawberryCount += 1
-				is_growing = false
-				grown = false
-				$plant.play("none")
+				
+			is_growing = false
+			grown = false
+			$plant.play("none")
+
+func change_frame(timer: Timer):
+	if $plant.frame == 0:
+		$plant.frame = 1
+		timer.start()
+	elif $plant.frame == 1:
+		$plant.frame = 2
+	grown = true
