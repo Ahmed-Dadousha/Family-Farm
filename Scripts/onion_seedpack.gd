@@ -1,7 +1,8 @@
 extends  Node2D
 
-var seed_type: int = 1 # 1 => Carrot 
+var seed_type: int = 2 # 1 => Onion 
 var dragable: bool = false
+
 
 
 func _physics_process(_delta):
@@ -17,11 +18,9 @@ func _physics_process(_delta):
 		elif Input.is_action_just_released("click"):
 			GameManager.is_dragging = false
 
-
 func _on_area_2d_mouse_entered():
 	if not GameManager.is_dragging:
 		dragable = true
-
 
 func _on_area_2d_mouse_exited():
 	if not GameManager.is_dragging:
