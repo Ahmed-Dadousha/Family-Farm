@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://x8i60cq3wmdr"]
+[gd_scene load_steps=26 format=3 uid="uid://x8i60cq3wmdr"]
 
 [ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/art/farmingTilesheetComplete.png" id="1_3hh6q"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_064u5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bms87kalqwjfi" path="res://Scenes/Statics/growning_zone.tscn" id="4_ryis1"]
 [ext_resource type="PackedScene" uid="uid://ccex52g5e4oey" path="res://Scenes/Characters/player.tscn" id="6_csa86"]
 [ext_resource type="PackedScene" uid="uid://d2imb1amihj2w" path="res://Scenes/Statics/sell_zone.tscn" id="7_frcfd"]
+[ext_resource type="PackedScene" uid="uid://dbbvypfphwksj" path="res://Scenes/Characters/chicken.tscn" id="9_7jr3u"]
 [ext_resource type="AudioStream" uid="uid://c66vsxfybiuf7" path="res://Assets/Audio/music.mp3" id="11_5rc81"]
 [ext_resource type="PackedScene" uid="uid://bq10aicqdauhd" path="res://Scenes/Statics/shop.tscn" id="12_120gv"]
 [ext_resource type="PackedScene" uid="uid://nyxcpwpwmfse" path="res://Scenes/Statics/shop_menu.tscn" id="13_ooowl"]
@@ -455,6 +456,11 @@ scale = Vector2(0.7, 0.7)
 
 [node name="shop" parent="zones" instance=ExtResource("12_120gv")]
 position = Vector2(314, 51)
+
+[node name="animals" type="Node2D" parent="."]
+
+[node name="chicken" parent="animals" instance=ExtResource("9_7jr3u")]
+position = Vector2(165, 104)
 
 [node name="player" parent="." instance=ExtResource("6_csa86")]
 position = Vector2(278, 64)
