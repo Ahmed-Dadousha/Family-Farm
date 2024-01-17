@@ -13,6 +13,11 @@ func _process(_delta):
 	$Counts/Strawberries/StrawberryText.text = str(GameManager.strawberryCount)
 	$Counts/Coins/CoinsText.text = str(GameManager.Coins)
 
-
 func _on_audio_stream_player_2d_finished():
 		$AudioStreamPlayer2D.play()
+
+func _on_shop_shop_menu_hide():
+	$zones/shop_menu.visible = false
+
+func _on_shop_shop_menu_show():
+	$zones/shop_menu.visible = true

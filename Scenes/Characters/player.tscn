@@ -111,8 +111,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kd7ig"]
-radius = 4.0
-height = 12.0
+radius = 3.0
+height = 10.0
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_agpja")
@@ -122,4 +122,5 @@ sprite_frames = SubResource("SpriteFrames_4wy40")
 animation = &"SideWalk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_kd7ig")

@@ -14,20 +14,15 @@ func _physics_process(_delta):
 func _on_area_2d_area_entered(_area):
 	if !is_growing:
 		if plant == 1:
-			$Timers/carrot_grow_timer.start()
-			$plant.play("carrot_growing")
+			play_anim($Timers/carrot_grow_timer, "carrot_growing")
 		elif plant == 2:
-			$Timers/onion_grow_timer.start()
-			$plant.play("onion_growing")
+			play_anim($Timers/onion_grow_timer, "onion_growing")
 		elif plant == 3:
-			$Timers/corn_grow_timer.start()
-			$plant.play("corn_growing")
+			play_anim($Timers/corn_grow_timer, "corn_growing")
 		elif plant == 4:
-			$Timers/cabbage_grow_timer.start()
-			$plant.play("cabbage_growing")
+			play_anim($Timers/cabbage_grow_timer, "cabbage_growing")
 		elif plant == 5:
-			$Timers/strawberry_grow_timer.start()
-			$plant.play("strawberry_growing")
+			play_anim($Timers/strawberry_grow_timer, "strawberry_growing")
 			
 		is_growing = true
 		$CPUParticles2D.emitting = true
@@ -75,3 +70,7 @@ func change_frame(timer: Timer):
 	elif $plant.frame == 1:
 		$plant.frame = 2
 	grown = true
+
+func play_anim(timer: Timer, anim: String):
+	timer.start()
+	$plant.play(anim)
