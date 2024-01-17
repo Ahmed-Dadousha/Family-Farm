@@ -58,7 +58,6 @@ func change_price():
 		$Label.text = str(200)
 
 func buy():
-	GameManager.Coins -= int($Label.text)
 	
 	if $Icon.animation not in owned:
 		if $Icon.animation  == "corn":
@@ -67,7 +66,10 @@ func buy():
 			add_to_root(cabbage)
 		elif $Icon.animation  == "strawberry":
 			add_to_root(strawberry)
+		GameManager.Coins -= int($Label.text)
 		
 func add_to_root(scene: Node2D):
+	
+	owned.append(scene.name.split("_")[0])
 	scene.global_position = Vector2(350, 50)
-	get_tree().root.add_child(scene)
+	get_tree().root.get_node("Game/seedPacks").add_child(scene)
