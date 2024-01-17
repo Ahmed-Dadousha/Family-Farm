@@ -23,10 +23,10 @@ func _process(delta):
 	if eating:
 		current_move = 2 if randi_range(1,2) > 1.5 else 1
 		velocity = Vector2(0,0)
-		$AnimatedSprite2D.play("eating")
+		$AnimationPlayer.play("eating")
 		
 	if walking:
-		$AnimatedSprite2D.play("walking")
+		$AnimationPlayer.play("walking")
 		if current_move == 1:
 			$AnimatedSprite2D.flip_h = true if xdir == -1 else false
 			velocity = Vector2(speed * xdir,0)
@@ -39,6 +39,7 @@ func _process(delta):
 		xdir *= -1
 		ydir *= -1
 		startTimer($timers/walking_timer)
+
 func _on_walking_timer_timeout():
 	
 	var x = randi_range(1,2)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbbvypfphwksj"]
+[gd_scene load_steps=15 format=3 uid="uid://dbbvypfphwksj"]
 
 [ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/art/farmingTilesheetComplete.png" id="1_3shnm"]
 [ext_resource type="Script" path="res://Scripts/chicken.gd" id="1_pn7j7"]
@@ -39,7 +39,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_arsnd")
 }],
-"loop": true,
+"loop": false,
 "name": &"eating",
 "speed": 5.0
 }, {
@@ -53,13 +53,79 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bd7ng")
 }],
-"loop": true,
+"loop": false,
 "name": &"walking",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rted5"]
-radius = 5.09902
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_168cv"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_new7p"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["eating"]
+}
+
+[sub_resource type="Animation" id="Animation_syj6w"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["walking"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ctc6k"]
+_data = {
+"RESET": SubResource("Animation_168cv"),
+"eating": SubResource("Animation_new7p"),
+"walking": SubResource("Animation_syj6w")
+}
 
 [node name="chicken" type="CharacterBody2D"]
 script = ExtResource("1_pn7j7")
@@ -67,7 +133,7 @@ script = ExtResource("1_pn7j7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bqd34")
 animation = &"walking"
-frame_progress = 0.803057
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
@@ -78,6 +144,11 @@ shape = SubResource("CircleShape2D_rted5")
 [node name="walking_timer" type="Timer" parent="timers"]
 
 [node name="state_timer" type="Timer" parent="timers"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ctc6k")
+}
 
 [connection signal="timeout" from="timers/walking_timer" to="." method="_on_walking_timer_timeout"]
 [connection signal="timeout" from="timers/state_timer" to="." method="_on_state_timer_timeout"]
