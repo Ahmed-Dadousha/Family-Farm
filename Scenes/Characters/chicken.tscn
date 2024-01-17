@@ -67,7 +67,7 @@ script = ExtResource("1_pn7j7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bqd34")
 animation = &"walking"
-frame_progress = 0.467269
+frame_progress = 0.803057
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
@@ -76,10 +76,8 @@ shape = SubResource("CircleShape2D_rted5")
 [node name="timers" type="Node" parent="."]
 
 [node name="walking_timer" type="Timer" parent="timers"]
-autostart = true
 
 [node name="state_timer" type="Timer" parent="timers"]
-autostart = true
 
 [connection signal="timeout" from="timers/walking_timer" to="." method="_on_walking_timer_timeout"]
 [connection signal="timeout" from="timers/state_timer" to="." method="_on_state_timer_timeout"]

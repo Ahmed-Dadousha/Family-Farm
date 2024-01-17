@@ -9,8 +9,17 @@ var current_move: int = 1 #1 Horizontal  #2 Vertical
 
 
 func _ready():
-	walking = true
-func _process(_delta):
+	
+	var rand: int = randi_range(1,2)
+	
+	if rand > 1.5:
+		walking = true
+	else:
+		eating = true
+	startTimer($timers/walking_timer)
+	startTimer($timers/state_timer)
+	
+func _process(delta):
 	if eating:
 		current_move = 2 if randi_range(1,2) > 1.5 else 1
 		velocity = Vector2(0,0)
@@ -23,9 +32,13 @@ func _process(_delta):
 			velocity = Vector2(speed * xdir,0)
 		else:
 			velocity = Vector2(0, speed * ydir)
-	move_and_slide()
-
-
+			
+	var collision = move_and_collide(velocity * delta)
+	
+	if collision:
+		xdir *= -1
+		ydir *= -1
+		startTimer($timers/walking_timer)
 func _on_walking_timer_timeout():
 	
 	var x = randi_range(1,2)
@@ -34,8 +47,7 @@ func _on_walking_timer_timeout():
 	xdir = 1 if x > 1.5 else -1
 	ydir = -1 if y > 1.5 else 1
 	
-	$timers/walking_timer.wait_time = randi_range(1,4)
-	$timers/walking_timer.start()
+	startTimer($timers/walking_timer)
 	
 func _on_state_timer_timeout():
 	if walking:
@@ -45,5 +57,8 @@ func _on_state_timer_timeout():
 		eating = false
 		walking = true
 		
-	$timers/state_timer.wait_time = randi_range(2,6)
-	$timers/state_timer.start()
+	startTimer($timers/state_timer)
+
+func startTimer(timer: Timer):
+	timer.wait_time = randi_range(1,6)
+	timer.start()
