@@ -1,5 +1,6 @@
 extends Node
 
+signal weather_changed
 signal stats_changed
 
 var planedSelected: int = 1 # 1 => Carrot # 2 => Onion # 3 => Corn # 4 Cabbage # 5 => Strawberry

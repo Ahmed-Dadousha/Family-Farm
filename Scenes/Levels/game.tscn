@@ -811,7 +811,14 @@ position = Vector2(278, 64)
 stream = ExtResource("11_5rc81")
 
 [node name="weather" parent="." instance=ExtResource("12_fnbm4")]
-visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = -1.0
+offset_right = 482.0
+offset_bottom = 271.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="shop_menu_hide" from="zones/shop" to="." method="_on_shop_shop_menu_hide"]
 [connection signal="shop_menu_show" from="zones/shop" to="." method="_on_shop_shop_menu_show"]
