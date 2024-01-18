@@ -13,3 +13,4 @@ var strawberryCount: int = 0
 var Coins: int = 0
 var is_dragging: bool = false
 
+var weather: String

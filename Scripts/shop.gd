@@ -3,6 +3,9 @@ extends StaticBody2D
 signal shop_menu_show
 signal shop_menu_hide
 
+func _process(_delta):
+	$character.visible = false if GameManager.weather == "rain" else true
+
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("player"):
 		shop_menu_show.emit()

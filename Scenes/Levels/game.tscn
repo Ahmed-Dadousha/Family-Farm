@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://x8i60cq3wmdr"]
+[gd_scene load_steps=27 format=3 uid="uid://x8i60cq3wmdr"]
 
 [ext_resource type="Texture2D" uid="uid://6o0y52dm1hqi" path="res://Assets/art/farmingTilesheetComplete.png" id="1_3hh6q"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_064u5"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dbbvypfphwksj" path="res://Scenes/Characters/chicken.tscn" id="9_7jr3u"]
 [ext_resource type="AudioStream" uid="uid://c66vsxfybiuf7" path="res://Assets/Audio/music.mp3" id="11_5rc81"]
 [ext_resource type="PackedScene" uid="uid://bq10aicqdauhd" path="res://Scenes/Statics/shop.tscn" id="12_120gv"]
+[ext_resource type="PackedScene" uid="uid://bx3n1nfm2wouk" path="res://Scenes/Statics/weather.tscn" id="12_fnbm4"]
 [ext_resource type="PackedScene" uid="uid://nyxcpwpwmfse" path="res://Scenes/Statics/shop_menu.tscn" id="13_ooowl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yn5ci"]
@@ -808,6 +809,9 @@ position = Vector2(278, 64)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_5rc81")
+
+[node name="weather" parent="." instance=ExtResource("12_fnbm4")]
+visible = false
 
 [connection signal="shop_menu_hide" from="zones/shop" to="." method="_on_shop_shop_menu_hide"]
 [connection signal="shop_menu_show" from="zones/shop" to="." method="_on_shop_shop_menu_show"]
