@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Farm-Family"
+config/tags=PackedStringArray("game")
 run/main_scene="res://Scenes/Levels/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://Assets/art/Icon.png"
@@ -30,6 +31,15 @@ window/stretch/scale=4.0
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "orange",
+"res://Scenes/": "yellow",
+"res://Scripts/": "green",
+"res://addons/": "red"
+}
 
 [input]
 

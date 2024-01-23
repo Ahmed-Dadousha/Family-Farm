@@ -1,5 +1,6 @@
 extends Node2D
 
+var open: bool = false
 
 func _ready():
 	$AudioStreamPlayer2D.play()	
@@ -34,3 +35,17 @@ func change_stats():
 	$Counts/Cabbages/CabbageText.text = str(GameManager.cabbageCount)
 	$Counts/Strawberries/StrawberryText.text = str(GameManager.strawberryCount)
 	$Counts/Coins/CoinsText.text = str(GameManager.Coins)
+
+func _on_cutscene_area_body_entered(body):
+	if body.is_in_group("player"):
+		if !open:
+			$Growing_Zones/AnimationPlayer.play("cut_scene1")
+			await  $Growing_Zones/AnimationPlayer.animation_finished
+			open = true
+
+func _on_cutscene_area_body_exited(body):
+	if body.is_in_group("player"):
+		if open:
+			$Growing_Zones/AnimationPlayer.play_backwards("cut_scene1")
+			await  $Growing_Zones/AnimationPlayer.animation_finished
+			open = false
